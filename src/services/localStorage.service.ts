@@ -37,8 +37,11 @@ export const persistToken = (token: string): void => {
 export const readToken = (): string => {
   return localStorage.getItem('accessToken') || 'bearerToken';
 };
-
+export const isAuthenticate  = (): boolean => {
+  return localStorage.getItem('accessToken') !== null ;
+};
 export const persistUser = (user: UserModel): void => {
+  if(user)
   localStorage.setItem('user', JSON.stringify(user));
 };
 

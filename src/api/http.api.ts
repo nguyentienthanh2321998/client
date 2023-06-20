@@ -4,11 +4,11 @@ import { ApiError } from '@app/api/ApiError';
 import { readToken } from '@app/services/localStorage.service';
 
 export const httpApi = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: 'https://host20230619004951.azurewebsites.net/api',
 });
 
 httpApi.interceptors.request.use((config) => {
-  config.headers = { ...config.headers, Authorization: `Bearer ${readToken()}` };
+  config.headers = { ...config.headers, tenant : 'root', Authorization: `Bearer ${readToken()}` };
 
   return config;
 });

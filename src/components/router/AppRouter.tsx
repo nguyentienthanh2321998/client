@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {isAuthenticate} from 'services/localStorage.service';
 
 // no lazy loading for auth pages to avoid flickering
 const AuthLayout = React.lazy(() => import('@app/components/layouts/AuthLayout/AuthLayout'));
@@ -128,23 +129,16 @@ export const AppRouter: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
+    
         <Route path={NFT_DASHBOARD_PATH} element={protectedLayout}>
-          <Route index element={<NftDashboard />} />
           <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} />
-          <Route path="apps">
-            <Route path="feed" element={<NewsFeed />} />
-          </Route>
+          
           <Route path="forms">
             <Route path="advanced-forms" element={<AdvancedForm />} />
           </Route>
           <Route path="data-tables" element={<DataTables />} />
           <Route path="charts" element={<Charts />} />
-          <Route path="maps">
-            <Route path="google-maps" element={<Google />} />
-            <Route path="leaflet-maps" element={<Leaflet />} />
-            <Route path="react-simple-maps" element={<ReactSimple />} />
-            <Route path="pigeon-maps" element={<Pigeons />} />
-          </Route>
+        
           <Route path="server-error" element={<ServerError />} />
           <Route path="404" element={<Error404 />} />
           <Route path="profile" element={<ProfileLayout />}>
@@ -199,6 +193,7 @@ export const AppRouter: React.FC = () => {
           <Route path="new-password" element={<NewPasswordPage />} />
         </Route>
         <Route path="/logout" element={<LogoutFallback />} />
+   
       </Routes>
     </BrowserRouter>
   );
